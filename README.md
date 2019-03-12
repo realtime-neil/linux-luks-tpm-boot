@@ -113,8 +113,6 @@ In case I forgot to consider something important in this decision, please let me
 
 [^note on /dev/urandom]: The use of /dev/urandom for cryptographic key generation [is](https://security.stackexchange.com/questions/3936/is-a-rand-from-dev-urandom-secure-for-a-login-key/3939#3939) [no less](https://www.2uo.de/myths-about-urandom) [secure](http://blog.cr.yp.to/20140205-entropy.html) than /dev/random while being faster.
 
-Compared to /dev/urandom, /dev/random [will block if the entropy pool is exhausted](http://www.onkarjoshi.com/blog/191/device-dev-random-vs-urandom/), so creation of your keyfile will probably take longer by using /dev/random. However, you could also use your [TPM to increase the speed of your /dev/random](https://wiki.archlinux.org/index.php/Rng-tools)
-
 ## Install necessary scripts
 
 We will store the secret directly in the TPM - in its NVRAM. There's a tool for that called [tpm-luks](https://github.com/shpedoikal/tpm-luks), but it seemed to be a bit too much for what I needed (and only works with dracut), so I created my own bash scripts. First, to make things easier, I've created `/sbin/seal-nvram.sh`, a script that puts the content of your file in NVRAM and seals it to PCRs 0-13 if the parameter `-z` is NOT used. (I have to admit that checking for the `-z` parameter is quite hacky, but it did the job for me.) So, download seal-nvram.sh, move it to /sbin, and don't forget to make it executable:
