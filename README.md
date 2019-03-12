@@ -84,9 +84,9 @@ For the curious, this is what measurements the single PCRs contain (taken from t
 
 Next, we are going to create a key file, which we will be add to our keys for the LUKS-encryption partition. Afterwards, we will store this key file in the TPMs NVRAM to use for decryption during boot time.
 
-First, create a key file. I am using `/dev/random` for this [^note on /dev/random]. 
+First, create a key file. I am using `/dev/urandom` for this [^note on /dev/urandom]. 
 
-`sudo dd bs=1 count=256 if=/dev/random of=/secret.bin`
+`sudo dd bs=1 count=256 if=/dev/urandom of=/secret.bin`
 
 Make sure it's not readable for users:
 
@@ -111,7 +111,9 @@ I might still add this functionality at some point in time for the sake of it.
 
 In case I forgot to consider something important in this decision, please let me know!
 
-[^note on /dev/random]: Compared to /dev/urandom, /dev/random [will block if the entropy pool is exhausted](http://www.onkarjoshi.com/blog/191/device-dev-random-vs-urandom/), so creation of your keyfile will probably take longer by using /dev/random. However, you could also use your [TPM to increase the speed of your /dev/random](https://wiki.archlinux.org/index.php/Rng-tools)
+[^note on /dev/urandom]: The use of /dev/urandom for cryptographic key generation [is](https://security.stackexchange.com/questions/3936/is-a-rand-from-dev-urandom-secure-for-a-login-key/3939#3939) [no less](https://www.2uo.de/myths-about-urandom) [secure](http://blog.cr.yp.to/20140205-entropy.html) than /dev/random while being faster.
+
+Compared to /dev/urandom, /dev/random [will block if the entropy pool is exhausted](http://www.onkarjoshi.com/blog/191/device-dev-random-vs-urandom/), so creation of your keyfile will probably take longer by using /dev/random. However, you could also use your [TPM to increase the speed of your /dev/random](https://wiki.archlinux.org/index.php/Rng-tools)
 
 ## Install necessary scripts
 
