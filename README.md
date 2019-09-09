@@ -241,7 +241,9 @@ NOTE: This is why I recommend not to remove the passphrase from your LUKS  parti
 
 ## Kernel update
 
-The section above explains you how to be able to boot your system after a kernel update. Once you booted up, you can run `sudo /sbin/seal-nvram.sh -z` so that the secret in the NVRAM is not sealed to the PCRs anymore. After you have done this, you should be able to reboot and get the secret from the TPM again, just as before the update. Once you did this reboot, the PCRs will contain the correct values from your new kernel, the correct grub command line arguments (since before you had to add a `.orig` to be able to boot up again, PCR 11 changed). Now you can run `sudo /sbin/seal-nvram.sh` once more, this time without the `-z`, and now you should be ready to go again. 
+After a kernel, initramfs, TrustedGRUB or kernel command line update, you can run `sudo /sbin/seal-nvram.sh -z` so that the secret in the NVRAM is not sealed to the PCRs anymore. After you have done this, you should be able to reboot and get the secret from the TPM, just as before the update. Once you did this reboot, the PCRs will contain the correct values from your new kernel, initramfs, TrustedGRUB and the correct grub command line arguments. Now you can run `sudo /sbin/seal-nvram.sh` once more, this time without the `-z`, which will seal the secret to PCRs again.
+
+This should allow you to do remote upgrades without physical access to computers console.
 
 ## TODO: Encrypting /boot
 
