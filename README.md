@@ -24,7 +24,7 @@ Afterwards, you can take ownership of the TPM:
 
 `sudo tpm_takeownership -z`
 
-The `-z` parameter sets the Storage Root Key ([SRK](https://technet.microsoft.com/en-us/library/cc753560%28v=ws.11%29.aspx)) to its default value (all 0s). Choose a secure value for the owner password. You'll need this one only during updates, so you could also store it in a password manager. Only be careful with using special characters such as `\`. Since the bash-scripts we are about to use will hand the password as parameter to some commands, this could cause problems. 
+The `-z` parameter sets the password for Storage Root Key ([SRK](https://technet.microsoft.com/en-us/library/cc753560%28v=ws.11%29.aspx)) to its default value (all 0s). Choose a secure value for the owner password. You'll need this one only during updates, so you could also store it in a password manager. Only be careful with using special characters such as `\`. Since the bash-scripts we are about to use will hand the password as parameter to some commands, this could cause problems. 
 
 ## Install TrustedGRUB2
 
