@@ -146,7 +146,7 @@ sudo mv getsecret.sh /sbin/
 sudo chmod +x /sbin/getsecret.sh
 ```
 
-Now you can use `/sbin/seal-nvram.sh` to write a key file to the TPM's NVRAM, and `/sbin/getsecret.sh` to get it out again. Using the `-z` parameter for `/sbin/seal-nvram.sh` will ensure that the NVRAM index can only be read if the PCRs 0-13 are in exactly the same state as when the secret was written to NVRAM.
+Now you can use `/sbin/seal-nvram.sh` to write a key file to the TPM's NVRAM, and `/sbin/getsecret.sh` to get it out again. Using the `-z` parameter for `/sbin/seal-nvram.sh` will ensure that the NVRAM index can be read even if the PCRs 0-13 are not exactly the same state as when the secret was written to NVRAM.
 You can already test if the scripts are working by writing the content of the key file to the NVRAM (no need to seal just yet, so you can use the `-z` parameter) and reading it back out again:
 
 ```bash
