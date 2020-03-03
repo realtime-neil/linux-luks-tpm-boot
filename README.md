@@ -128,8 +128,8 @@ Note: I have chosen to set the permission of the NVRAM I am creating to OWNERWRI
 
 AUTHREAD : reading requires NVRAM area authorization
 AUTHWRITE : writing requires NVRAM area authorization
-OWNERREAD : writing requires owner authorization
-OWNERWRITE : reading requires owner authorization
+OWNERREAD : reading requires owner authorization
+OWNERWRITE : writing requires owner authorization
 PPREAD : writing requires physical presence
 PPWRITE : reading requires physical presence
 GLOBALLOCK : write to index 0 locks the NVRAM area until TPM_STARTUP(ST_CLEAR)
