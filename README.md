@@ -196,10 +196,8 @@ the content of your file in NVRAM and seals it to PCRs 0-13 if the parameter
 quite hacky, but it did the job for me.) So, download `seal-nvram.sh`, move it
 to `/sbin`, and don't forget to make it executable:
 
-```bash
-sudo mv seal-nvram.sh /sbin/
-sudo chmod +x /sbin/seal-nvram.sh
-```
+    # cp seal-nvram.sh /sbin/
+    # chmod +x /sbin/seal-nvram.sh
 
 Note: I have chosen to set the permission of the NVRAM I am creating to
 `OWNERWRITE|READ_STCLEAR`. Using `READ_STCLEAR` will allow us to block reading
